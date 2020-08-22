@@ -1,19 +1,19 @@
 # Analyze S3 access log using Amazon Elasticsearch Service
 
-The AWS Big Data blog post Analyzing Amazon S3 server access logs using the Amazon Elasticsearch Service demonstrates how to analyze Amazon S3 server access log using Amazon Elasticsearch Service. The blog post creates Amazon ES cluster, Lambda function and configure event on S3 bucket to trigger Lambda function. The Lambda function reads the file, processes the access log, and sends it to Amazon ES cluster. You can use Kibana to create interactive visuals and analyze logs over a time period.
+The AWS Big Data blog post [Analyzing Amazon S3 server access logs using the Amazon Elasticsearch Service](https://aws.amazon.com/elasticsearch-service/) demonstrates how to analyze Amazon S3 server access log using Amazon Elasticsearch Service. The blog post creates Amazon ES cluster, Lambda function and configure event on S3 bucket to trigger Lambda function. The Lambda function reads the file, processes the access log, and sends it to Amazon ES cluster. You can use Kibana to create interactive visuals and analyze logs over a time period.
 
 This Github project describes in detail the Lambda code components used in the blog post. 
 
 This solution uses a Python deployment code and executes as needed. Let’s walk over the code which indexes the data to the ES cluster. The following are the high-level tasks the Python code does for you.
 
-•	Connects to the Amazon ES domain and defines an index template that will automatically be applied to access-logs indices. 
-•	Creates access-logs-index-1 index. 
-•	Read and build an access log file with the format expected by _bulk index operation.
-•	Writes the parsed access log file into Amazon ES.
+*	Connects to the Amazon ES domain and defines an [index template](https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-templates.html) that will automatically be applied to access-logs indices. 
+*	Creates ___access-logs-index-1___ index. 
+*	Read and build an access log file with the format expected by [_bulk](https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-templates.html) index operation.
+*	Writes the parsed access log file into Amazon ES.
 
-To connect to Amazon ES, the Python code uses few libraries such as Elasticsearch, RequestsHttpConnection, and urllib. The package has these libraries installed already. The Python code has a section to connect to Amazon ES domain, validate, and create the index. The details of the code segment have been discussed in detail in Building and Maintaining an Amazon S3 Metadata blog post.  
+To connect to Amazon ES, the Python code uses few libraries such as [Elasticsearch](https://elasticsearch-py.readthedocs.io/en/master/api.html), RequestsHttpConnection, and urllib. The package has these libraries installed already. The Python code has a section to connect to Amazon ES domain, validate, and create the index. The details of the code segment have been discussed in detail in [Building and Maintaining an Amazon S3 Metadata](https://aws.amazon.com/blogs/big-data/building-and-maintaining-an-amazon-s3-metadata-index-without-servers/) blog post.  
 
-The first step in the processing is to define the variables and index template body. Index templates body define settings and mappings that you can automatically apply when creating new indices.
+The first step in the processing is to define the variables and index template body. Index templates body define [settings](https://www.elastic.co/guide/en/elasticsearch/reference/current/index-modules.html#index-modules-settings) and [mappings](https://www.elastic.co/guide/en/elasticsearch/reference/current/mapping.html) that you can automatically apply when creating new indices.
 
 
 ```#Define the Index Template Body
@@ -92,7 +92,7 @@ The next step defines method to dump the index to the Elasticsearch. The code us
         exit(4)
 ```
 
-The following code segment does the actual parsing of raw data and dumps it to Amazon ES. In the first step, I have defined the regular expression corresponding to the access log values in variable S3_REGEX. Then each line of the file is processed and matched with S3_REGEX to make sure the access log patterns are uniform. The processed data is aggregated in tuples using zip function and indexed into Amazon ES using the bulk method.
+The following code segment does the actual parsing of raw data and dumps it to Amazon ES. In the first step, I have defined the [regular expression](https://en.wikipedia.org/wiki/Regular_expression) corresponding to the access log values in variable S3_REGEX. Then each line of the file is processed and matched with S3_REGEX to make sure the access log patterns are uniform. The processed data is aggregated in tuples using zip function and indexed into Amazon ES using the bulk method.
 
  ```#Connect to ES 
     esClient = connectES(endpoint_name)
