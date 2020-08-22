@@ -1,3 +1,5 @@
+# Analyze S3 access log using Amazon Elasticsearch Service
+
 The AWS Big Data blog post Analyzing Amazon S3 server access logs using the Amazon Elasticsearch Service demonstrates how to analyze Amazon S3 server access log using Amazon Elasticsearch Service. The blog post creates Amazon ES cluster, Lambda function and configure event on S3 bucket to trigger Lambda function. The Lambda function reads the file, processes the access log, and sends it to Amazon ES cluster. You can use Kibana to create interactive visuals and analyze logs over a time period.
 
 This Github project describes in detail the Lambda code components used in the blog post. 
