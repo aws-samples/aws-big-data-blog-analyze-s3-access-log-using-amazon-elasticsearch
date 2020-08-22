@@ -20,7 +20,8 @@ To connect to Amazon ES, the Python code uses few libraries such as [Elasticsear
 The first step in the processing is to define the variables and index template body. Index templates body define [settings](https://www.elastic.co/guide/en/elasticsearch/reference/current/index-modules.html#index-modules-settings) and [mappings](https://www.elastic.co/guide/en/elasticsearch/reference/current/mapping.html) that you can automatically apply when creating new indices.
 
 
-```#Define the Index Template Body
+```python
+#Define the Index Template Body
 template_body= {
                   "index_patterns": ["access-log-index*", "access-logs-index*"],
                   "settings": {
@@ -39,10 +40,10 @@ template_body= {
                   }
                 } 
 ```
-       
 The next step is to define methods to connect to Amazon ES cluster. Elasticsearch is configured with Fine-grained access control with internal database master user. 
 
-``` def connectES(esEndPoint):
+```python
+  def connectES(esEndPoint):
     print ('Connecting to the ES Endpoint {0}'.format(esEndPoint))
     try:
         esClient = Elasticsearch(
@@ -61,7 +62,8 @@ The next step is to define methods to connect to Amazon ES cluster. Elasticsearc
 The following step defines the methods to create template and index. The index mapping and shard settings will by default derived from template. 
 
 
- ```def createTemplate(esClient):
+```python
+def createTemplate(esClient):
     try:
         res = esClient.indices.exists_template(template_name)
         if res is False:
@@ -86,7 +88,8 @@ def createIndex(esClient):
 
 The next step defines method to dump the index to the Elasticsearch. The code use Python helpers to bulk load data into an Elasticsearch index
 
- ```def indexDocElement(esClient,response):
+```python
+  def indexDocElement(esClient,response):
     try:
         helpers.bulk(esClient, response)
         print("Document indexed")
@@ -98,7 +101,8 @@ The next step defines method to dump the index to the Elasticsearch. The code us
 
 The following code segment does the actual parsing of raw data and dumps it to Amazon ES. In the first step, I have defined the [regular expression](https://en.wikipedia.org/wiki/Regular_expression) corresponding to the access log values in variable S3_REGEX. Then each line of the file is processed and matched with S3_REGEX to make sure the access log patterns are uniform. The processed data is aggregated in tuples using zip function and indexed into Amazon ES using the bulk method.
 
- ```#Connect to ES 
+```python
+    #Connect to ES 
     esClient = connectES(endpoint_name)
     #Create Index Template 
     createTemplate(esClient)
