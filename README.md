@@ -136,5 +136,5 @@ The following code segment does the actual parsing of raw data and dumps it to A
         raise e
 ```
 
-After access log files logs are fed into Amazon ES, you can open Kibana and author [Kibana visuals and Dashboard](https://aws.amazon.com/blogs/database/configuring-and-authoring-kibana-dashboards/). 
+After access log files logs are fed into Amazon ES, you can open Kibana and author [visuals and dashboard](https://aws.amazon.com/blogs/database/configuring-and-authoring-kibana-dashboards/). 
 
