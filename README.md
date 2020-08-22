@@ -14,8 +14,8 @@ To connect to Amazon ES, the Python code uses few libraries such as Elasticsearc
 The first step in the processing is to define the variables and index template body. Index templates body define settings and mappings that you can automatically apply when creating new indices.
 
 
-#Define the Index Template Body
-```template_body= {
+```#Define the Index Template Body
+template_body= {
                   "index_patterns": ["access-log-index*", "access-logs-index*"],
                   "settings": {
                     "number_of_shards": 1
