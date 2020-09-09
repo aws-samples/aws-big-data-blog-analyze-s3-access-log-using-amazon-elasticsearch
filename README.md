@@ -1,4 +1,4 @@
-# Analyze S3 access log using Amazon Elasticsearch Service
+# Analyzing Amazon S3 server access log using Amazon Elasticsearch Service
 
 
 ### AWS Big Data Blog Post Code Walkthrough
