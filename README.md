@@ -2,7 +2,7 @@
 
 
 ### AWS Big Data Blog Post Code Walkthrough
-The AWS Big Data blog post [Analyzing Amazon S3 server access logs using the Amazon Elasticsearch Service](https://aws.amazon.com/elasticsearch-service/) demonstrates how to analyze Amazon S3 server access log using Amazon Elasticsearch Service. The blog post creates Amazon ES cluster, Lambda function and configure event on S3 bucket to trigger Lambda function. The Lambda function reads the file, processes the access log, and sends it to Amazon ES cluster. After the logs are available, you can use Kibana to create interactive visuals and analyze it over a time period.
+The AWS Big Data blog post [Analyzing Amazon S3 server access logs using the Amazon Elasticsearch Service](https://aws.amazon.com/blogs/big-data/analyzing-amazon-s3-server-access-logs-using-amazon-es/) demonstrates how to analyze Amazon S3 server access log using Amazon Elasticsearch Service. The blog post creates Amazon ES cluster, Lambda function and configure event on S3 bucket to trigger Lambda function. The Lambda function reads the file, processes the access log, and sends it to Amazon ES cluster. After the logs are available, you can use Kibana to create interactive visuals and analyze it over a time period.
 
 This Github project describes in detail the Lambda handler components used in the blog post. 
 
