@@ -12,9 +12,7 @@ from datetime import datetime
 
 s3 = boto3.client('s3')
 es_client=boto3.client('es')
-domain_name=os.environ['DOMAINNAME'] 
-
-endpoint_name = es_client.describe_elasticsearch_domain(DomainName=domain_name)['DomainStatus']['Endpoints']['vpc']
+endpoint_name=os.environ['DOMAINNAME']
 
 #Define Amazon ES Index and Template name
 index_name='access-logs-index-1'
